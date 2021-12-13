@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Coin
+  - helper
+  - danger
+  - platform
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - Platform
+  - Player
+  - Item
+  - Item_hide
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3629093953
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Item_hide
+    uniqueID: 2227350217
+    locked: 0
+  - name: Platform
+    uniqueID: 3007890611
+    locked: 0
+  - name: Item
+    uniqueID: 3326200777
+    locked: 0
+  - name: Player
+    uniqueID: 3838641767
+    locked: 0
+  - name: UI
+    uniqueID: 2041105527
+    locked: 0
