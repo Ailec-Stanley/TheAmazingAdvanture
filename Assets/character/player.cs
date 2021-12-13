@@ -11,6 +11,7 @@ public class player : MonoBehaviour{
     public GameObject shield;
     public GameObject showShieldCD;
     public GameObject hangParticle;
+    GameObject m;
 
     public float maxFallingSpeed;
     public float moveSpeed = 10f;
@@ -23,7 +24,6 @@ public class player : MonoBehaviour{
     public float shieldTime;
     public float shieldCD;
 
-    public float deadTime;
 
     public Transform groundCheck;
     public Transform wallCheck_front;
@@ -53,18 +53,24 @@ public class player : MonoBehaviour{
     bool isShield;
 
     bool isDead;
+
+    Vector3 savedPoint;
+    public float resurrectionTime;
+    float resurrectionRemindTime;
     
 
     // Start is called before the first frame update
     void Start(){
+        m  = transform.Find("main").gameObject;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = m.GetComponent<Animator>();
         shadow_left.SetActive(false);
         shadow_right.SetActive(false);
         shield.SetActive(false);
         sacling = transform.localScale.x;
         isDead = false;
         hangParticle.SetActive(false);
+        savedPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -87,10 +93,13 @@ public class player : MonoBehaviour{
     }
 
     void FixedUpdate(){
+        Debug.Log(resurrectionRemindTime);
+        
         if(isDead){
-            deadTime -= Time.deltaTime;
-            if(deadTime <= 0){
-                gameObject.SetActive(false);
+            resurrectionRemindTime -= Time.deltaTime;
+            if(resurrectionRemindTime < 0){
+                transform.position = savedPoint;
+                isDead = false;
             }
             rb.velocity = new Vector3(0,0,0);
             anim.SetBool("dead", true);
@@ -244,6 +253,7 @@ public class player : MonoBehaviour{
 
     void die(){
         isDead = true;
+        resurrectionRemindTime = resurrectionTime;
     }
     void switchAnimation(){
         anim.SetFloat("running", Mathf.Abs(rb.velocity.x));
@@ -285,11 +295,16 @@ public class player : MonoBehaviour{
 
         if(isDead){
             anim.SetBool("dead", true);
+        }else{
+            anim.SetBool("dead", false);
         }
         anim.SetFloat("TEST", shiedlCDTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        if(isDead){
+            return;
+        }
         switch(other.tag){
             case "Coin":
                 other.gameObject.SetActive(false);
@@ -309,6 +324,9 @@ public class player : MonoBehaviour{
                     jumpCount = 1;
                     dashCount = 1;
                 }
+                break;
+            case "checkpoint":
+                savedPoint = other.transform.position;
                 break;
             default:
                 break;

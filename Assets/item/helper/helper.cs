@@ -11,7 +11,7 @@ public class helper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        child = transform.FindChild("helper0").gameObject;
+        child = transform.Find("helper0").gameObject;
         refresh = 0;
     }
 

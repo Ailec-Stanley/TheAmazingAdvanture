@@ -11,7 +11,7 @@ public class coin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        child = transform.FindChild("coin0").gameObject;
+        child = transform.Find("coin0").gameObject;
         refresh = 0;
     }
 
