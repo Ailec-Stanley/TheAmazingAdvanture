@@ -57,7 +57,17 @@ public class player : MonoBehaviour{
     Vector3 savedPoint;
     public float resurrectionTime;
     float resurrectionRemindTime;
-    
+
+    public float taijiTime;
+    bool isTaiji;
+    float taijiRemindTime;
+    bool taiji_up;
+    bool taiji_down;
+    bool taiji_left;
+    bool taiji_right;
+    Vector3 taijiPosition;
+    public float taijiMoveTime;
+    float taijiMoveRemindTime;
 
     // Start is called before the first frame update
     void Start(){
@@ -75,6 +85,26 @@ public class player : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+        if(isTaiji){
+            horizontalMove = Input.GetAxis("Horizontal");
+            float verticalMove = Input.GetAxis("Vertical");
+            Debug.Log(taiji_right);
+            if(horizontalMove > 0.1){
+                taiji_right = true;
+                taiji_left = false;
+            }else if(horizontalMove < -0.1){
+                taiji_right = false;
+                taiji_left = true;
+            }
+            if(verticalMove > 0.1){
+                taiji_up = true;
+                taiji_down = false;
+            }else if(verticalMove < -0.1){
+                taiji_up = false;
+                taiji_down = true;
+            }
+            return;
+        }
         if(isDead){
             return;
         }
@@ -93,8 +123,7 @@ public class player : MonoBehaviour{
     }
 
     void FixedUpdate(){
-        Debug.Log(resurrectionRemindTime);
-        
+        taiji();
         if(isDead){
             resurrectionRemindTime -= Time.deltaTime;
             if(resurrectionRemindTime < 0){
@@ -123,6 +152,54 @@ public class player : MonoBehaviour{
         switchAnimation();
     }
     
+    void taiji(){
+        taijiMoveRemindTime -= Time.deltaTime;
+        if(isTaiji && taijiRemindTime > 0){
+            transform.position = taijiPosition;
+            taijiRemindTime -= Time.deltaTime;
+            Time.timeScale = 0.1f;
+        }else if(isTaiji && taijiRemindTime < 0){
+            taijiMoveRemindTime = taijiMoveTime;
+            isTaiji = false;
+            Time.timeScale = 1f;
+            if(transform.localScale.x > 0){
+                shadow_right.SetActive(true);
+            }else{
+                shadow_left.SetActive(true);
+            }
+        }
+
+        if(taijiMoveRemindTime < 0){
+            taiji_up = false;
+            taiji_down = false;
+            taiji_left = false;
+            taiji_right = false;
+            if(!isDash){
+                if(transform.localScale.x > 0){
+                    shadow_right.SetActive(false);
+                }else{
+                    shadow_left.SetActive(false);
+                }
+            }
+        }else{
+            float h_s, v_s;
+            if(taiji_left){
+                h_s = -40f;
+            }else if(taiji_right){
+                h_s = 40f;
+            }else{
+                h_s = 0f;
+            }
+            if(taiji_down){
+                v_s = -10f;
+            }else if(taiji_up){
+                v_s = 15f;
+            }else{
+                v_s = 0f;
+            }
+            rb.velocity = new Vector3(h_s, v_s, 0);
+        }
+    }
     void movement(){
         hangingJumpRemindTime -= Time.deltaTime;
         if(hangingJumpRemindTime < 0){
@@ -130,7 +207,6 @@ public class player : MonoBehaviour{
         }
         // Horizontal move
         if(!hangingJump){
-
             rb.velocity = new Vector2(horizontalMove * moveSpeed, rb.velocity.y);
             // Horizontal direction
             if(horizontalMove > 0 && !isHang){
@@ -253,6 +329,7 @@ public class player : MonoBehaviour{
 
     void die(){
         isDead = true;
+        remindDashTime = 0f;
         resurrectionRemindTime = resurrectionTime;
     }
     void switchAnimation(){
@@ -272,7 +349,7 @@ public class player : MonoBehaviour{
             anim.SetBool("onGround", false);
         }
 
-        if(isDash){
+        if(isDash || taijiMoveRemindTime > 0){
             anim.SetBool("dashing", true);
         }else{
             anim.SetBool("dashing", false);
@@ -298,6 +375,7 @@ public class player : MonoBehaviour{
         }else{
             anim.SetBool("dead", false);
         }
+
         anim.SetFloat("TEST", shiedlCDTime);
     }
 
@@ -317,10 +395,10 @@ public class player : MonoBehaviour{
                 remindDashTime = 0;
                 break;
             case "danger":
-                if(!isDash && !isShield){
+                if(!isShield){
                     die();
                 }else if(isShield){
-                    rb.velocity = new Vector3(rb.velocity.x, 7, 0);
+                    rb.velocity = new Vector3(rb.velocity.x, 20, 0);
                     jumpCount = 1;
                     dashCount = 1;
                 }
@@ -328,7 +406,31 @@ public class player : MonoBehaviour{
             case "checkpoint":
                 savedPoint = other.transform.position;
                 break;
+            case "taiji":
+                if(isTaiji){
+                    break;
+                }
+                remindDashTime = 0f;
+                taijiPosition = other.transform.position;
+                transform.position = taijiPosition;
+                jumpCount = 1;
+                dashCount = 1;
+                isTaiji = true;
+                taijiRemindTime = taijiTime;
+                Time.timeScale = 0.1f;
+                break;
             default:
+                break;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(isDead){
+            return;
+        }
+        switch(other.collider.tag){
+            case "danger":
+                die();
                 break;
         }
     }

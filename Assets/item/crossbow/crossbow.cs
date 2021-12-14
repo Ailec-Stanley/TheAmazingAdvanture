@@ -20,8 +20,7 @@ public class crossbow : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        Debug.Log(time);    
+    { 
         time -= Time.deltaTime;
         if(time > 0){
             anim.SetBool("shooting", false);

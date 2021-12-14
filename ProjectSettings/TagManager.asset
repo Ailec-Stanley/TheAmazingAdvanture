@@ -9,6 +9,8 @@ TagManager:
   - danger
   - platform
   - checkpoint
+  - player
+  - taiji
   layers:
   - Default
   - TransparentFX
