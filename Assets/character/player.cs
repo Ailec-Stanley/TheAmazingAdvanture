@@ -14,6 +14,7 @@ public class player : MonoBehaviour{
     public AudioSource jumpAudio;
     public AudioSource doubleJumpAudio;
     public AudioSource dashAudio;
+    public AudioSource hitAudio;
     GameObject m;
 
     GameObject wings;
@@ -448,6 +449,7 @@ public class player : MonoBehaviour{
                 if(!isShield){
                     die();
                 }else if(isShield){
+                    hitAudio.Play();
                     rb.velocity = new Vector3(rb.velocity.x, 20, 0);
                     jumpCount = 1;
                     dashCount = 1;
