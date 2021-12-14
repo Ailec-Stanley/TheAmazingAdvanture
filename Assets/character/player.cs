@@ -36,7 +36,12 @@ public class player : MonoBehaviour{
 
     bool isGround, isJump, isDash, isHang, inAir;
     bool jumpPressed;
+    bool jumpReleased;
     int jumpCount;
+    public float jumpTime;
+    public float doubleJumpCd;
+    float jumpRemindTime;
+    float doubleJumpCdRemind;
 
     bool dashPressed;
     int dashCount;
@@ -109,8 +114,12 @@ public class player : MonoBehaviour{
             return;
         }
         horizontalMove = Input.GetAxis("Horizontal");
-        if(Input.GetButtonDown("Jump") && jumpCount > 0){
+        if(Input.GetButton("Jump")){
             jumpPressed = true;
+        }
+        if(Input.GetButtonUp("Jump")){
+            jumpReleased = true;
+            jumpPressed = false;
         }
         if(Input.GetButtonDown("Dash") && dashCount > 0){
             dashPressed = true;
@@ -229,26 +238,39 @@ public class player : MonoBehaviour{
     }
 
     void jump(){
+        jumpRemindTime -= Time.deltaTime;
+        doubleJumpCdRemind -= Time.deltaTime;
         if(isGround){
             jumpCount = 2;
             isJump = false;
         }
         
-        if(jumpPressed && isGround){
+        if(jumpPressed && isGround && jumpReleased){
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;
-        }else if(jumpPressed && jumpCount > 0 && (isJump || isHang || inAir)){
+            jumpReleased = false;
+            jumpRemindTime = jumpTime;
+        }else if(jumpPressed && jumpReleased && jumpCount > 0 && (isJump || isHang || inAir) && jumpRemindTime < 0){
+            jumpRemindTime = jumpTime;
+            Debug.Log(jumpRemindTime);
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;
+            jumpReleased = false;
             if(isHang){
                 hangingJump = true;
                 hangingJumpRemindTime = hangingJumpTime;
                 rb.velocity = new Vector2(moveSpeed * transform.localScale.x, jumpForce);
             }
+        }
+        if(jumpRemindTime > 0 && jumpPressed && !jumpReleased){
+            
+            isJump = true;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpPressed = false;
         }
     }
 
