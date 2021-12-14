@@ -77,11 +77,17 @@ public class player : MonoBehaviour{
     public float taijiMoveTime;
     float taijiMoveRemindTime;
 
+    ParticleSystem feather;
+    
+
     // Start is called before the first frame update
     void Start(){
         m  = transform.Find("main").gameObject;
         wings = transform.Find("wings").gameObject;
+        feather = transform.Find("feather").gameObject.GetComponent<ParticleSystem>();
+        var em = feather.emission;
         wings.SetActive(false);
+        em.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         anim = m.GetComponent<Animator>();
         shadow_left.SetActive(false);
@@ -243,6 +249,7 @@ public class player : MonoBehaviour{
     }
 
     void jump(){
+        var em = feather.emission;
         jumpRemindTime -= Time.deltaTime;
         wingsRemindTime -= Time.deltaTime;
         if(isGround){
@@ -261,6 +268,7 @@ public class player : MonoBehaviour{
             wingsRemindTime = wingsTime;
             jumpRemindTime = jumpTime;
             wings.SetActive(true);
+            em.enabled = true;
 
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -269,6 +277,7 @@ public class player : MonoBehaviour{
             jumpReleased = false;
             if(isHang){
                 wings.SetActive(false);
+                em.enabled = false;
                 hangingJump = true;
                 hangingJumpRemindTime = hangingJumpTime;
                 rb.velocity = new Vector2(moveSpeed * transform.localScale.x, jumpForce);
@@ -281,6 +290,7 @@ public class player : MonoBehaviour{
         }
         if(wingsRemindTime < 0){
             wings.SetActive(false);
+            em.enabled = false;
         }
     }
 
