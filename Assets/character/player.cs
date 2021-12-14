@@ -11,6 +11,9 @@ public class player : MonoBehaviour{
     public GameObject shield;
     public GameObject showShieldCD;
     public GameObject hangParticle;
+    public AudioSource jumpAudio;
+    public AudioSource doubleJumpAudio;
+    public AudioSource dashAudio;
     GameObject m;
 
     GameObject wings;
@@ -258,6 +261,7 @@ public class player : MonoBehaviour{
         }
         
         if(jumpPressed && isGround && jumpReleased){
+            jumpAudio.Play();
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
@@ -265,6 +269,7 @@ public class player : MonoBehaviour{
             jumpReleased = false;
             jumpRemindTime = jumpTime;
         }else if(jumpPressed && jumpReleased && jumpCount > 0 && (isJump || isHang || inAir) && jumpRemindTime < 0){
+            doubleJumpAudio.Play();
             wingsRemindTime = wingsTime;
             jumpRemindTime = jumpTime;
             wings.SetActive(true);
@@ -300,6 +305,7 @@ public class player : MonoBehaviour{
         }
 
         if(dashPressed && dashCount > 0 && !isDash){
+            dashAudio.Play();
             if(isHang){
                 dashCount++;
             }
@@ -435,6 +441,8 @@ public class player : MonoBehaviour{
                 other.gameObject.SetActive(false);
                 rb.velocity = new Vector2(rb.velocity.x, 30);
                 remindDashTime = 0;
+                jumpRemindTime = 0;
+                jumpPressed = false;
                 break;
             case "danger":
                 if(!isShield){
