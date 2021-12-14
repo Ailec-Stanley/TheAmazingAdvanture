@@ -13,6 +13,8 @@ public class player : MonoBehaviour{
     public GameObject hangParticle;
     GameObject m;
 
+    GameObject wings;
+
     public float maxFallingSpeed;
     public float moveSpeed = 10f;
     public float jumpForce;
@@ -41,7 +43,8 @@ public class player : MonoBehaviour{
     public float jumpTime;
     public float doubleJumpCd;
     float jumpRemindTime;
-    float doubleJumpCdRemind;
+    public float wingsTime;
+    float wingsRemindTime;
 
     bool dashPressed;
     int dashCount;
@@ -77,6 +80,8 @@ public class player : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         m  = transform.Find("main").gameObject;
+        wings = transform.Find("wings").gameObject;
+        wings.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         anim = m.GetComponent<Animator>();
         shadow_left.SetActive(false);
@@ -239,7 +244,7 @@ public class player : MonoBehaviour{
 
     void jump(){
         jumpRemindTime -= Time.deltaTime;
-        doubleJumpCdRemind -= Time.deltaTime;
+        wingsRemindTime -= Time.deltaTime;
         if(isGround){
             jumpCount = 2;
             isJump = false;
@@ -253,24 +258,29 @@ public class player : MonoBehaviour{
             jumpReleased = false;
             jumpRemindTime = jumpTime;
         }else if(jumpPressed && jumpReleased && jumpCount > 0 && (isJump || isHang || inAir) && jumpRemindTime < 0){
+            wingsRemindTime = wingsTime;
             jumpRemindTime = jumpTime;
-            Debug.Log(jumpRemindTime);
+            wings.SetActive(true);
+
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;
             jumpReleased = false;
             if(isHang){
+                wings.SetActive(false);
                 hangingJump = true;
                 hangingJumpRemindTime = hangingJumpTime;
                 rb.velocity = new Vector2(moveSpeed * transform.localScale.x, jumpForce);
             }
         }
         if(jumpRemindTime > 0 && jumpPressed && !jumpReleased){
-            
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpPressed = false;
+        }
+        if(wingsRemindTime < 0){
+            wings.SetActive(false);
         }
     }
 
