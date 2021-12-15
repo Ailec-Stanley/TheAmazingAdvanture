@@ -1,28 +1,34 @@
 fileFormatVersion: 2
-guid: ac6729b789920424a96a064f8b9a640c
+guid: 9e129dae38985654081c611330b620cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -121036041979401404
-    second: Wing_spritesheet_0
+      213: -3433382802971892587
+    second: Wing_spritesheet 1_0
   - first:
-      213: 4982416039626705774
-    second: Wing_spritesheet_1
+      213: 6476211653023488344
+    second: Wing_spritesheet 1_1
   - first:
-      213: -1305465472345694412
-    second: Wing_spritesheet_2
+      213: 8049157115654255121
+    second: Wing_spritesheet 1_2
   - first:
-      213: 7844530865005482695
-    second: Wing_spritesheet_3
+      213: -4333277925754669833
+    second: Wing_spritesheet 1_3
   - first:
-      213: -4047810928016237342
-    second: Wing_spritesheet_4
+      213: -8965367757318702579
+    second: Wing_spritesheet 1_4
   - first:
-      213: -6617320246874582158
-    second: Wing_spritesheet_5
+      213: -3455956912127855650
+    second: Wing_spritesheet 1_5
   - first:
-      213: -1527105747671243685
-    second: Wing_spritesheet_6
+      213: -988788243874753252
+    second: Wing_spritesheet 1_6
+  - first:
+      213: 2813619465228418630
+    second: Wing_spritesheet 1_7
+  - first:
+      213: -267171452239322499
+    second: Wing_spritesheet 1_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wing_spritesheet_0
+      name: Wing_spritesheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44b6cc07c5ef15ef0800000000000000
-      internalID: -121036041979401404
+      spriteID: 594ece2188c2a50d0800000000000000
+      internalID: -3433382802971892587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_1
+      name: Wing_spritesheet 1_1
       rect:
         serializedVersion: 2
         x: 438
@@ -147,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b88257df8152540800000000000000
-      internalID: 4982416039626705774
+      spriteID: 859d5bc9f2020e950800000000000000
+      internalID: 6476211653023488344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_2
+      name: Wing_spritesheet 1_2
       rect:
         serializedVersion: 2
         x: 876
@@ -168,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43f1c4ec11e02ede0800000000000000
-      internalID: -1305465472345694412
+      spriteID: 11231eb10c954bf60800000000000000
+      internalID: 8049157115654255121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_3
+      name: Wing_spritesheet 1_3
       rect:
         serializedVersion: 2
         x: 1314
@@ -189,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c25d36724f5ddc60800000000000000
-      internalID: 7844530865005482695
+      spriteID: 7f4f95a6faa1dd3c0800000000000000
+      internalID: -4333277925754669833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_4
+      name: Wing_spritesheet 1_4
       rect:
         serializedVersion: 2
         x: 1752
@@ -210,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ecd5ad386943d7c0800000000000000
-      internalID: -4047810928016237342
+      spriteID: d0a3748768d949380800000000000000
+      internalID: -8965367757318702579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_5
+      name: Wing_spritesheet 1_5
       rect:
         serializedVersion: 2
         x: 2190
@@ -231,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2735a08ab4e8a24a0800000000000000
-      internalID: -6617320246874582158
+      spriteID: ed33095bf79f900d0800000000000000
+      internalID: -3455956912127855650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wing_spritesheet_6
+      name: Wing_spritesheet 1_6
       rect:
         serializedVersion: 2
         x: 2628
@@ -252,8 +258,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b542997d961aecae0800000000000000
-      internalID: -1527105747671243685
+      spriteID: c1553cdb45e1742f0800000000000000
+      internalID: -988788243874753252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_spritesheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 3066
+        y: 0
+        width: 438
+        height: 513
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e70161ffbfb0720800000000000000
+      internalID: 2813619465228418630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_spritesheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 3504
+        y: 0
+        width: 438
+        height: 513
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72662fcaf0da4cf0800000000000000
+      internalID: -267171452239322499
       vertices: []
       indices: 
       edges: []
