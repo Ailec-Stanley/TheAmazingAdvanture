@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 1.5
   speed: 30
-  low: -6
-  high: -2
+  low: 43.5
+  high: 48
 --- !u!50 &6588482256863683005
 Rigidbody2D:
   serializedVersion: 4

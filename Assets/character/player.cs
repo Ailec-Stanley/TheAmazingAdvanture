@@ -5,12 +5,16 @@ using UnityEngine;
 public class player : MonoBehaviour{
     Rigidbody2D rb;
     Animator anim;
-    public Collider2D coll;
+    //public Collider2D coll;
     public GameObject shadow_right;
     public GameObject shadow_left;
     public GameObject shield;
     public GameObject showShieldCD;
     public GameObject hangParticle;
+    public AudioSource jumpAudio;
+    public AudioSource doubleJumpAudio;
+    public AudioSource dashAudio;
+    public AudioSource hitAudio;
     GameObject m;
 
     GameObject wings;
@@ -41,7 +45,6 @@ public class player : MonoBehaviour{
     bool jumpReleased;
     int jumpCount;
     public float jumpTime;
-    public float doubleJumpCd;
     float jumpRemindTime;
     public float wingsTime;
     float wingsRemindTime;
@@ -97,6 +100,7 @@ public class player : MonoBehaviour{
         isDead = false;
         hangParticle.SetActive(false);
         savedPoint = transform.position;
+        jumpReleased = true;
     }
 
     // Update is called once per frame
@@ -104,7 +108,6 @@ public class player : MonoBehaviour{
         if(isTaiji){
             horizontalMove = Input.GetAxis("Horizontal");
             float verticalMove = Input.GetAxis("Vertical");
-            Debug.Log(taiji_right);
             if(horizontalMove > 0.1){
                 taiji_right = true;
                 taiji_left = false;
@@ -258,6 +261,7 @@ public class player : MonoBehaviour{
         }
         
         if(jumpPressed && isGround && jumpReleased){
+            jumpAudio.Play();
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
@@ -265,6 +269,7 @@ public class player : MonoBehaviour{
             jumpReleased = false;
             jumpRemindTime = jumpTime;
         }else if(jumpPressed && jumpReleased && jumpCount > 0 && (isJump || isHang || inAir) && jumpRemindTime < 0){
+            doubleJumpAudio.Play();
             wingsRemindTime = wingsTime;
             jumpRemindTime = jumpTime;
             wings.SetActive(true);
@@ -300,6 +305,7 @@ public class player : MonoBehaviour{
         }
 
         if(dashPressed && dashCount > 0 && !isDash){
+            dashAudio.Play();
             if(isHang){
                 dashCount++;
             }
@@ -435,11 +441,14 @@ public class player : MonoBehaviour{
                 other.gameObject.SetActive(false);
                 rb.velocity = new Vector2(rb.velocity.x, 30);
                 remindDashTime = 0;
+                jumpRemindTime = 0;
+                jumpPressed = false;
                 break;
             case "danger":
                 if(!isShield){
                     die();
                 }else if(isShield){
+                    hitAudio.Play();
                     rb.velocity = new Vector3(rb.velocity.x, 20, 0);
                     jumpCount = 1;
                     dashCount = 1;
