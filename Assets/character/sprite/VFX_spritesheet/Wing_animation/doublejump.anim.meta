@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/character/sprite/VFX_spritesheet/Dust_animaiton/dust_animation.anim.meta
-guid: 9bd479ac84e15504cb513cb0159f7b08
-=======
-guid: acda28cbc89564bcfb4fad0b3753f61e
->>>>>>> main:Assets/character/sprite/VFX_spritesheet/Wing_animation/doublejump.anim.meta
+guid: b2185ccf45e3146418e057de93490db7
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

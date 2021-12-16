@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class winflag : MonoBehaviour
 {
     public string nextName; 
-    public GameObject ui;
+    GameObject ui;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ui = GameObject.Find("Timer");
     }
 
     // Update is called once per frame

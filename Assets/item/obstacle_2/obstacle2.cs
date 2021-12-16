@@ -10,7 +10,7 @@ public class obstacle2 : MonoBehaviour
 
     Rigidbody2D rb;
     float time;
-    bool up;
+    public bool up;
     // Start is called before the first frame update
     void Start()
     {
