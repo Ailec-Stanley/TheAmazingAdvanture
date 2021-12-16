@@ -6,11 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/character/sprite/VFX_spritesheet/Dust_animaiton/dust_animation.anim
   m_Name: dust_animation
-=======
-  m_Name: doublejump
->>>>>>> main:Assets/character/sprite/VFX_spritesheet/Wing_animation/doublejump.anim
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +19,6 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-<<<<<<< HEAD:Assets/character/sprite/VFX_spritesheet/Dust_animaiton/dust_animation.anim
     - time: 0
       value: {fileID: -2015910474697322019, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - time: 0.083333336
@@ -36,22 +31,6 @@ AnimationClip:
       value: {fileID: 1794849489504100761, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - time: 0.41666666
       value: {fileID: -882265186809511077, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
-=======
-    - time: 0.016666668
-      value: {fileID: -121036041979401404, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.083333336
-      value: {fileID: 4982416039626705774, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.15
-      value: {fileID: -1305465472345694412, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.2
-      value: {fileID: 7844530865005482695, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.25
-      value: {fileID: -4047810928016237342, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.3
-      value: {fileID: -6617320246874582158, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - time: 0.35
-      value: {fileID: 4982416039626705774, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
->>>>>>> main:Assets/character/sprite/VFX_spritesheet/Wing_animation/doublejump.anim
     attribute: m_Sprite
     path: 
     classID: 212
@@ -71,28 +50,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-<<<<<<< HEAD:Assets/character/sprite/VFX_spritesheet/Dust_animaiton/dust_animation.anim
     - {fileID: -2015910474697322019, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - {fileID: -3135564468468210479, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - {fileID: -1117808228857868601, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - {fileID: 4918072250803076623, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - {fileID: 1794849489504100761, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
     - {fileID: -882265186809511077, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
-=======
-    - {fileID: -121036041979401404, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: 4982416039626705774, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: -1305465472345694412, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: 7844530865005482695, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: -4047810928016237342, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: -6617320246874582158, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
-    - {fileID: 4982416039626705774, guid: ac6729b789920424a96a064f8b9a640c, type: 3}
->>>>>>> main:Assets/character/sprite/VFX_spritesheet/Wing_animation/doublejump.anim
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.36666667
+    m_StopTime: 0.43333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

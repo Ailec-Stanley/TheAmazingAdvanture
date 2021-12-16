@@ -11,6 +11,7 @@ TagManager:
   - checkpoint
   - player
   - taiji
+  - UI
   layers:
   - Default
   - TransparentFX

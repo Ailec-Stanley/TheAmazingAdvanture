@@ -18,6 +18,7 @@ public class player : MonoBehaviour{
     GameObject m;
 
     GameObject wings;
+    GameObject jumpDust;
 
     public float maxFallingSpeed;
     public float moveSpeed = 10f;
@@ -48,7 +49,10 @@ public class player : MonoBehaviour{
     float jumpRemindTime;
     public float wingsTime;
     float wingsRemindTime;
+    public float dustTime;
+    float dustRemindTime;
 
+    Vector3 dustPosition;
     bool dashPressed;
     int dashCount;
     float remindDashTime;
@@ -87,9 +91,11 @@ public class player : MonoBehaviour{
     void Start(){
         m  = transform.Find("main").gameObject;
         wings = transform.Find("wings").gameObject;
+        jumpDust = transform.Find("jumpdust").gameObject;
         feather = transform.Find("feather").gameObject.GetComponent<ParticleSystem>();
         var em = feather.emission;
         wings.SetActive(false);
+        jumpDust.SetActive(false);
         em.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         anim = m.GetComponent<Animator>();
@@ -255,6 +261,7 @@ public class player : MonoBehaviour{
         var em = feather.emission;
         jumpRemindTime -= Time.deltaTime;
         wingsRemindTime -= Time.deltaTime;
+        dustRemindTime -= Time.deltaTime;
         if(isGround){
             jumpCount = 2;
             isJump = false;
@@ -262,6 +269,9 @@ public class player : MonoBehaviour{
         
         if(jumpPressed && isGround && jumpReleased){
             jumpAudio.Play();
+            dustRemindTime = dustTime;
+            dustPosition = transform.position;
+            jumpDust.SetActive(true);
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
@@ -270,10 +280,11 @@ public class player : MonoBehaviour{
             jumpRemindTime = jumpTime;
         }else if(jumpPressed && jumpReleased && jumpCount > 0 && (isJump || isHang || inAir) && jumpRemindTime < 0){
             doubleJumpAudio.Play();
+            em.enabled = true;
             wingsRemindTime = wingsTime;
             jumpRemindTime = jumpTime;
             wings.SetActive(true);
-            em.enabled = true;
+            
 
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -296,6 +307,11 @@ public class player : MonoBehaviour{
         if(wingsRemindTime < 0){
             wings.SetActive(false);
             em.enabled = false;
+        }
+        if(dustRemindTime < 0){
+            jumpDust.SetActive(false);
+        }else{
+            jumpDust.transform.position = dustPosition;
         }
     }
 
