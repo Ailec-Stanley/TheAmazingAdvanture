@@ -19,6 +19,7 @@ public class player : MonoBehaviour{
 
     GameObject wings;
     GameObject jumpDust;
+    GameObject deathEffect;
 
     public float maxFallingSpeed;
     public float moveSpeed = 10f;
@@ -67,11 +68,9 @@ public class player : MonoBehaviour{
     float shiedlCDTime;
     bool isShield;
 
-    bool isDead;
+    public bool isDead;
 
-    Vector3 savedPoint;
-    public float resurrectionTime;
-    float resurrectionRemindTime;
+    public Vector3 savedPoint;
 
     public float taijiTime;
     bool isTaiji;
@@ -93,10 +92,14 @@ public class player : MonoBehaviour{
         wings = transform.Find("wings").gameObject;
         jumpDust = transform.Find("jumpdust").gameObject;
         feather = transform.Find("feather").gameObject.GetComponent<ParticleSystem>();
+        deathEffect = transform.Find("death").gameObject;
+
         var em = feather.emission;
         wings.SetActive(false);
         jumpDust.SetActive(false);
         em.enabled = false;
+        deathEffect.SetActive(false);
+
         rb = GetComponent<Rigidbody2D>();
         anim = m.GetComponent<Animator>();
         shadow_left.SetActive(false);
@@ -131,8 +134,10 @@ public class player : MonoBehaviour{
             return;
         }
         if(isDead){
+            anim.SetBool("dead", true);
             return;
         }
+        anim.SetBool("dead", false);
         horizontalMove = Input.GetAxis("Horizontal");
         if(Input.GetButton("Jump")){
             jumpPressed = true;
@@ -154,13 +159,8 @@ public class player : MonoBehaviour{
     void FixedUpdate(){
         taiji();
         if(isDead){
-            resurrectionRemindTime -= Time.deltaTime;
-            if(resurrectionRemindTime < 0){
-                transform.position = savedPoint;
-                isDead = false;
-            }
+            deathEffect.SetActive(true);
             rb.velocity = new Vector3(0,0,0);
-            anim.SetBool("dead", true);
             return;
         }
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.15f, ground);
@@ -307,6 +307,8 @@ public class player : MonoBehaviour{
         if(wingsRemindTime < 0){
             wings.SetActive(false);
             em.enabled = false;
+        }else{
+            em.enabled = true;
         }
         if(dustRemindTime < 0){
             jumpDust.SetActive(false);
@@ -394,7 +396,6 @@ public class player : MonoBehaviour{
     void die(){
         isDead = true;
         remindDashTime = 0f;
-        resurrectionRemindTime = resurrectionTime;
     }
     void switchAnimation(){
         anim.SetFloat("running", Mathf.Abs(rb.velocity.x));
@@ -432,12 +433,6 @@ public class player : MonoBehaviour{
             anim.SetBool("onGround", false);
         }else{
             anim.SetBool("hanging", false);
-        }
-
-        if(isDead){
-            anim.SetBool("dead", true);
-        }else{
-            anim.SetBool("dead", false);
         }
 
         anim.SetFloat("TEST", shiedlCDTime);

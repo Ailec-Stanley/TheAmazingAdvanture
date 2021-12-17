@@ -12,6 +12,7 @@ public class finalWin : MonoBehaviour
         t = GetComponent<Text>();
         time = GameObject.Find("Timer").transform.Find("Text").gameObject.GetComponent<timer>().game_time;
         t.text = time.ToString();
+        Destroy(GameObject.Find("Timer"));
     }
 
     // Update is called once per frame
