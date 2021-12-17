@@ -148,6 +148,9 @@ public class player : MonoBehaviour{
         if(Input.GetButtonDown("Dash") && dashCount > 0){
             dashPressed = true;
         }
+        if(Input.GetButtonUp("Dash")){
+            dashPressed = false;
+        }
         if(Input.GetButtonDown("Shield") && shiedlCDTime <= 0){
             shiedlCDTime = shieldCD;
             shieldRemindTime = shieldTime;

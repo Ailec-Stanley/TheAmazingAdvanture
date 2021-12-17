@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class scale : MonoBehaviour
 {
-    float s;
+    float s_x;
+    float s_y;
     Vector2 canvasPosition;
     // Start is called before the first frame update
     void Start()
     {
-        canvasPosition = new Vector2(UnityEngine.Screen.width/2, UnityEngine.Screen.height/2);
-        s = ((float)UnityEngine.Screen.width)/826f;
-        transform.localScale = new Vector3(s, s, 1f);
-        transform.position = new Vector3(canvasPosition.x + (transform.position.x - canvasPosition.x) * s, canvasPosition.y + (transform.position.y - canvasPosition.y) * s, transform.position.z);
+        s_x = ((float)UnityEngine.Screen.width)/826f;
+        s_y = ((float)UnityEngine.Screen.height)/364f;
+        transform.localScale = new Vector3(transform.localScale.x * s_x, transform.localScale.y * s_x, 1f);
+        transform.localPosition = new Vector3(transform.localPosition.x * s_x, transform.localPosition.y * s_y, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }
