@@ -363,7 +363,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -416,7 +416,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1732,7 +1732,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -5024,8 +5024,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -456325529
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -5223,8 +5223,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -456325529
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2015910474697322019, guid: 47167ec9938ca924c813905b0c24f293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20046,8 +20046,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.14824659}
-  m_Size: {x: 1.13, y: 1.2835071}
+  m_Offset: {x: 0, y: -0.21778871}
+  m_Size: {x: 1.13, y: 1.1444229}
   m_Direction: 0
 --- !u!82 &1658118740
 AudioSource:

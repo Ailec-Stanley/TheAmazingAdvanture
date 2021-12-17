@@ -135,7 +135,6 @@ public class player : MonoBehaviour{
         }
         if(isDead){
             anim.SetBool("dead", true);
-            return;
         }
         anim.SetBool("dead", false);
         horizontalMove = Input.GetAxis("Horizontal");
@@ -396,6 +395,8 @@ public class player : MonoBehaviour{
     void die(){
         isDead = true;
         remindDashTime = 0f;
+        wingsRemindTime = 0f;
+        wings.SetActive(false);
     }
     void switchAnimation(){
         anim.SetFloat("running", Mathf.Abs(rb.velocity.x));
